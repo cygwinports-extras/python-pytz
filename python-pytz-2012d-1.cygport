@@ -1,0 +1,7 @@
+inherit distutils
+
+CATEGORY="Python"
+SUMMARY="Olson timezone database for Python"
+DESCRIPTION="pytz brings the Olson tz database into Python. This library
+allows accurate and cross platform timezone calculations using Python
+2.4 or higher. Almost all of the Olson timezones are supported."
