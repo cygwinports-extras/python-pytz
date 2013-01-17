@@ -1,5 +1,8 @@
 inherit distutils
 
+NAME="python-pytz"
+VERSION=2012j
+RELEASE=1
 CATEGORY="Python"
 SUMMARY="Olson timezone database for Python"
 DESCRIPTION="pytz brings the Olson tz database into Python. This library
