@@ -1,0 +1,46 @@
+--- origsrc/pytz-2017.3/pytz/__init__.py	2017-10-30 14:06:44.000000000 -0500
++++ src/pytz-2017.3/pytz/__init__.py	2017-11-16 00:58:17.623853800 -0600
+@@ -91,19 +91,11 @@ def open_resource(name):
+     if zoneinfo_dir != None:
+         filename = os.path.join(zoneinfo_dir, *name_parts)
+     else:
+-        filename = os.path.join(os.path.dirname(__file__),
+-                                'zoneinfo', *name_parts)
+-        if not os.path.exists(filename):
+-            # http://bugs.launchpad.net/bugs/383171 - we avoid using this
+-            # unless absolutely necessary to help when a broken version of
+-            # pkg_resources is installed.
+-            try:
+-                from pkg_resources import resource_stream
+-            except ImportError:
+-                resource_stream = None
+-
+-            if resource_stream is not None:
+-                return resource_stream(__name__, 'zoneinfo/' + name)
++        zoneinfo_dir = os.environ.get('TZDIR', None)
++        if zoneinfo_dir != None:
++            filename = os.path.join(zoneinfo_dir, *name_parts)
++        else:
++            filename = os.path.join("/usr/share/zoneinfo", *name_parts)
+     return open(filename, 'rb')
+ 
+ 
+--- origsrc/pytz-2017.3/setup.py	2017-10-30 14:06:44.000000000 -0500
++++ src/pytz-2017.3/setup.py	2017-11-16 00:59:49.281864000 -0600
+@@ -12,15 +12,9 @@ except ImportError:
+ me = 'Stuart Bishop'
+ memail = 'stuart@stuartbishop.net'
+ packages = ['pytz']
+-resources = ['zone.tab', 'locales/pytz.pot']
+-for dirpath, dirnames, filenames in os.walk(os.path.join('pytz', 'zoneinfo')):
+-    # remove the 'pytz' part of the path
+-    basepath = dirpath.split(os.path.sep, 1)[1]
+-    resources.extend([os.path.join(basepath, filename)
+-                     for filename in filenames])
++resources = ['locales/pytz.pot']
+ package_data = {'pytz': resources}
+ 
+-assert len(resources) > 10, 'zoneinfo files not found!'
+ 
+ setup (
+     name='pytz',

@@ -1,10 +1,17 @@
-inherit distutils
+inherit python-wheel
 
 NAME="python-pytz"
-VERSION=2012j
+VERSION=2017.3
 RELEASE=1
 CATEGORY="Python"
 SUMMARY="Olson timezone database for Python"
 DESCRIPTION="pytz brings the Olson tz database into Python. This library
 allows accurate and cross platform timezone calculations using Python
 2.4 or higher. Almost all of the Olson timezones are supported."
+SRC_URI="${SRC_URI%.tar.gz}.zip"
+PATCH_URI="2017.3-system-tzdata.patch"
+
+ARCH=noarch
+
+python2_pytz_REQUIRES="tzdata"
+python3_pytz_REQUIRES="tzdata"
