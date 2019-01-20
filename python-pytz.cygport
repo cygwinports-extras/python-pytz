@@ -1,7 +1,7 @@
 inherit python-wheel
 
 NAME="python-pytz"
-VERSION=2018.7
+VERSION=2018.9
 RELEASE=1
 CATEGORY="Python"
 SUMMARY="Olson timezone database for Python"
