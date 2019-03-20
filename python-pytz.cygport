@@ -2,7 +2,7 @@ inherit python-wheel
 
 NAME="python-pytz"
 VERSION=2018.9
-RELEASE=1
+RELEASE=2
 CATEGORY="Python"
 SUMMARY="Olson timezone database for Python"
 DESCRIPTION="pytz brings the Olson tz database into Python. This library
@@ -12,5 +12,6 @@ PATCH_URI="2018.7-system-tzdata.patch"
 
 ARCH=noarch
 
-python2_pytz_REQUIRES="tzdata"
-python3_pytz_REQUIRES="tzdata"
+python27_pytz_REQUIRES="tzdata"
+python36_pytz_REQUIRES="tzdata"
+python37_pytz_REQUIRES="tzdata"
